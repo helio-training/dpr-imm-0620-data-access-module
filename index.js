@@ -13,16 +13,18 @@ const {
 const main = () => {
     console.log('Entry Point');
     console.log(`Welcome, ${process.env.NAME}`);
-    console.log('--------------');
-    // Run Functions using Require Format 1
-    ProductsDAL.readProducts();
-    ProductsDAL.createProduct();
-    ProductsDAL.upsertProduct();
-    ProductsDAL.updateProduct();
-    ProductsDAL.deleteProduct();
-    console.log('--------------');
+    // console.log('--------------');
+    // // Run Functions using Require Format 1
+    // ProductsDAL.readProducts();
+    // ProductsDAL.createProduct();
+    // ProductsDAL.upsertProduct();
+    // ProductsDAL.updateProduct();
+    // ProductsDAL.deleteProduct();
+    // console.log('--------------');
     // Run Functions using Require Format 2
-    readProducts();
+    readProducts().then((data) => {
+        console.log('Read:', data);
+    });
     createProduct();
     upsertProduct();
     updateProduct();
