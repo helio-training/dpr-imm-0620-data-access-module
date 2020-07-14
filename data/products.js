@@ -28,19 +28,61 @@ const readProducts = () => {
 }
 // Create a Product, using the 'insert' Mongo Function
 const createProduct = (product) => {
-    console.log('Create a Product');
+    const iou = new Promise((resolve, reject)=>{
+        MongoClient.connect(url, options, (err, client)=>{
+            assert.equal(err, null);
+            const db = client.db(db_name);
+            const collection = db.collection(col_name);
+            collection.insertOne(product, (err, result)=> {
+                assert.equal(err, null);
+                resolve(result.ops[0]);
+                client.close();
+            });
+        });
+    });
+    return iou;
 }
 // Update/Replace a Product, using the 'updateOne' Mongo Function
 const upsertProduct = (id, product) => {
-    console.log('Update/Replace a Product');
+    const iou = new Promise((resolve, reject) => {
+        MongoClient.connect(url, options, (err, client) => {
+            assert.equal(err, null);
+            const db = client.db(db_name);
+            const collection = db.collection(col_name);
+
+            resolve('temp');
+            client.close();
+        });
+    });
+    return iou;
 }
 // Update/Modify a Product, using the 'updateOne' Mongo Function
 const updateProduct = (id, product) => {
-    console.log('Update/Modify a Product');
+    const iou = new Promise((resolve, reject) => {
+        MongoClient.connect(url, options, (err, client) => {
+            assert.equal(err, null);
+            const db = client.db(db_name);
+            const collection = db.collection(col_name);
+
+            resolve('temp');
+            client.close();
+        });
+    });
+    return iou;
 }
-// Delete a Product, using the 'delete' Mongo Function
+// Delete a Product, using the 'deleteOne' Mongo Function
 const deleteProduct = (id) => {
-    console.log('Delete a Product');
+    const iou = new Promise((resolve, reject) => {
+        MongoClient.connect(url, options, (err, client) => {
+            assert.equal(err, null);
+            const db = client.db(db_name);
+            const collection = db.collection(col_name);
+
+            resolve('temp');
+            client.close();
+        });
+    });
+    return iou;
 }
 
 // Export CRUD Function

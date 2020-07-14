@@ -10,6 +10,18 @@ const {
     deleteProduct
 } = require('./data/products');
 
+const newProduct = {
+    name: "Switch",
+    price: 299.99,
+    brand: "Nintendo",
+    size: {
+        weight: "1 lbs",
+        height: "4 inches",
+        length: "10 inches",
+        depth: ".5 inches"
+    }
+}
+
 const main = () => {
     console.log('Entry Point');
     console.log(`Welcome, ${process.env.NAME}`);
@@ -25,7 +37,9 @@ const main = () => {
     readProducts().then((data) => {
         console.log('Read:', data);
     });
-    createProduct();
+    createProduct(newProduct).then((data) => {
+        console.log('Create:', data);
+    });;
     upsertProduct();
     updateProduct();
     deleteProduct();
