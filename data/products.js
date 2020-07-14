@@ -1,5 +1,6 @@
 // Import Mongo Connection Package(s)
 const MongoClient = require('mongodb').MongoClient;
+const ObjectID = require('mongodb').ObjectID;
 const assert = require('assert');
 // Setup Database Objects
 const url = process.env.DB_URL;
@@ -77,9 +78,11 @@ const deleteProduct = (id) => {
             assert.equal(err, null);
             const db = client.db(db_name);
             const collection = db.collection(col_name);
-
-            resolve('temp');
-            client.close();
+            collection.findOneAndDelete( { _id: new ObjectID(id) }, (err, result) => {
+                assert.equal(err, null);
+                resolve(result.value);
+                client.close();
+            });
         });
     });
     return iou;

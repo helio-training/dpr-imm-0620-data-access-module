@@ -33,16 +33,19 @@ const main = () => {
     // ProductsDAL.updateProduct();
     // ProductsDAL.deleteProduct();
     // console.log('--------------');
+
     // Run Functions using Require Format 2
-    readProducts().then((data) => {
-        console.log('Read:', data);
-    });
-    createProduct(newProduct).then((data) => {
-        console.log('Create:', data);
-    });;
+    // readProducts().then((data) => {
+    //     console.log('Read:', data);
+    // });
+    // createProduct(newProduct).then((data) => {
+    //     console.log('Create:', data);
+    // });
     upsertProduct();
     updateProduct();
-    deleteProduct();
+    deleteProduct("5f0dd8c77e096c0d0f27a81d").then((data) => {
+        console.log('Delete:', data);
+    });
 }
 
 main();
