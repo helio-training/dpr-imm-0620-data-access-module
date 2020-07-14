@@ -22,6 +22,18 @@ const newProduct = {
     }
 }
 
+const upsertProductData = {
+    name: "Gameboy",
+    price: 34.55,
+    brand: "Nintendo",
+    size: {
+        weight: "1 lbs",
+        height: "4 inches",
+        length: "10 inches",
+        depth: ".5 inches"
+    }
+}
+
 const main = () => {
     console.log('Entry Point');
     console.log(`Welcome, ${process.env.NAME}`);
@@ -35,15 +47,19 @@ const main = () => {
     // console.log('--------------');
 
     // Run Functions using Require Format 2
-    // readProducts().then((data) => {
-    //     console.log('Read:', data);
-    // });
-    // createProduct(newProduct).then((data) => {
-    //     console.log('Create:', data);
-    // });
-    upsertProduct();
-    updateProduct();
-    deleteProduct("5f0dd8c77e096c0d0f27a81d").then((data) => {
+    readProducts().then((data) => {
+        console.log('Read:', data);
+    });
+    createProduct(newProduct).then((data) => {
+        console.log('Create:', data);
+    });
+    upsertProduct("5f0cd141fccf68a40463f125", upsertProductData).then((data)=> {
+        console.log('Update/Replace', data);
+    });
+    updateProduct("5f0cd141fccf60130463f125", { price: 1000.98 }).then((data) => {
+        console.log('Update/Modify:', data);
+    });
+    deleteProduct("5f0dd70ec0f0630c61306f91").then((data) => {
         console.log('Delete:', data);
     });
 }
